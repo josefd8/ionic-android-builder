@@ -1,7 +1,5 @@
-# docker-ionic-android-sdk
+# ionic-android-builder
 Docker image include Android SDK for building Ionic framework application.
-
-[![Docker Build Status](https://img.shields.io/docker/build/kusumoto/docker-ionic-android-sdk.svg)](https://hub.docker.com/r/kusumoto/docker-ionic-android-sdk/)
 
 ## About this project
 In my work, I want to build the android application develop by ionic framework via [gitlab-runner](https://gitlab.com/gitlab-org/gitlab-runner) with Docker driver.
@@ -9,7 +7,7 @@ In my work, I want to build the android application develop by ionic framework v
 ## Example `.gitlab-ci` file
 ```Dockerfile
 build:
-  image: kusumoto/docker-ionic-android-sdk
+  image: josefd8/ionic-android-builder
   script:
     - npm install
     - mkdir www
@@ -24,19 +22,19 @@ If you want to run or build the ionic project in computer but doesn't have Andro
 
 - Restore npm package
 ```
-docker run --rm -v $(pwd):/ionicapp kusumoto/docker-ionic-android-sdk npm install
+docker run --rm -v $(pwd):/ionicapp josefd8/ionic-android-builder npm install
 ```
 - Preview Ionic web app in your web browser
 ```
-docker run --rm -v $(pwd):/ionicapp -p 8100:8100 kusumoto/docker-ionic-android-sdk ionic serve
+docker run --rm -v $(pwd):/ionicapp -p 8100:8100 josefd8/ionic-android-builder ionic serve
 ```
 - Build android apk output file
 ```
-docker run --rm -v $(pwd):/ionicapp kusumoto/docker-ionic-android-sdk ionic cordova build android
+docker run --rm -v $(pwd):/ionicapp josefd8/ionic-android-builder ionic cordova build android
 ```
 
 ## ADB Support
 You can use adb (Android debug bridge) in this docker image follow this command. (Spacial thanks [@aruelo](https://github.com/aruelo) for instrcution in issue [#17](https://github.com/Kusumoto/docker-ionic-android-sdk/issues/17))
 ```
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -P -v $(pwd):/ionicapp kusumoto/docker-ionic-android-sdk /opt/android-sdk/platform-tools/adb devices
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -P -v $(pwd):/ionicapp josefd8/ionic-android-builder /opt/android-sdk/platform-tools/adb devices
 ```
