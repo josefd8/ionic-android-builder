@@ -4,6 +4,7 @@ LABEL MAINTAINER="José Fernández <josefd8@gmail.com>"
 
 ARG NODEJS_VERSION="10"
 ARG IONIC_VERSION="4.5.0"
+ARG CORDOVA_VERSION="8.0.0"
 ARG ANDROID_SDK_VERSION="4333796"
 ARG ANDROID_HOME="/opt/android-sdk"
 ARG ANDROID_BUILD_TOOLS_VERSION="29.0.0"
@@ -29,7 +30,7 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x | bash - \
     && apt-get update \
     && apt-get install -y nodejs \
-    && npm install -g cordova ionic@${IONIC_VERSION} \
+    && npm install -g cordova@${CORDOVA_VERSION} ionic@${IONIC_VERSION} \
     && cd /tmp \
     && curl -fSLk https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_VERSION}.zip -o sdk-tools-linux-${ANDROID_SDK_VERSION}.zip \
     && unzip sdk-tools-linux-${ANDROID_SDK_VERSION}.zip \
